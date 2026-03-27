@@ -85,7 +85,7 @@ def _upsertSection(doc: str, heading: str, body: str) -> str:
     """
     escaped_heading = re.escape(heading)
     # Match section from heading to next heading or end of document
-    section_re = re.compile(rf"(^{escaped_heading}\n)([\s\S]*?)(?=^##\s|\Z)", re.Multiline)
+    section_re = re.compile(rf"(^{escaped_heading}\n)([\s\S]*?)(?=^##\s|\Z)", re.MULTILINE)
     rendered = f"{heading}\n{body.strip()}\n\n"
     
     if section_re.search(doc):

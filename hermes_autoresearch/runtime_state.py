@@ -15,6 +15,17 @@ from hermes_autoresearch.config import MAX_QUEUED_STEERS
 
 
 @dataclass(frozen=True)
+class AutoresearchRuntimeSnapshot:
+    """Immutable snapshot of runtime state for a single cwd."""
+    mode: Literal["auto", "on", "off"]
+    runInFlight: bool
+    queuedSteers: list[str]
+    needsContinuationReminder: bool
+    pendingCommand: Optional[dict]
+    pendingRun: Optional["PendingExperimentRun"]
+
+
+@dataclass(frozen=True)
 class PendingExperimentRun:
     """A run_experiment result awaiting log_experiment."""
     command: str
@@ -42,6 +53,8 @@ class MutableAutoresearchRuntimeState:
 
 # Per-cwd runtime states
 _runtime_states: dict[str, MutableAutoresearchRuntimeState] = {}
+
+AutoresearchRuntimeMode = Literal["auto", "on", "off"]
 
 
 def _getMutableRuntimeState(cwd: str) -> MutableAutoresearchRuntimeState:

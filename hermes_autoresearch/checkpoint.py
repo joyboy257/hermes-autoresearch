@@ -199,7 +199,7 @@ def writeAutoresearchCheckpoint(
     
     checkpoint_data = {
         "version": 1,
-        "updatedAt": int(1000 * __import__("time".time())),
+        "updatedAt": int(1000 * __import__("time").time()),
         "sessionStartCommit": sessionStartCommit,
         "canonicalBranch": canonicalBranch,
         "carryForwardContext": None,

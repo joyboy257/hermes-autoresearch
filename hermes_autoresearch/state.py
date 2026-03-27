@@ -127,7 +127,7 @@ def _summarizeIdeasBacklog(ideasBacklog: Optional[str]) -> AutoresearchIdeasSnap
         elif stripped and len(ideas) > 0:
             # Continuation line (indented) - skip
             pass
-        elif stripped[0].isdigit() and ". " in stripped[:5]:
+        elif stripped and stripped[0].isdigit() and ". " in stripped[:5]:
             # Numbered list like "1. Something"
             parts = stripped.split(". ", 1)
             if len(parts) == 2 and parts[0].isdigit():
